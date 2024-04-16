@@ -21,7 +21,7 @@
     <?php foreach($_POST as $key => $value){
         echo "<p>";
         echo "<b>{$key}</b> : ";
-        if ($key == "skills"){
+        if (is_array($value)){
             foreach($value as $skill){
                 echo "{$skill},";
             }
