@@ -46,6 +46,8 @@ $users = $fetch_all_users_stmt->fetchAll();
                     echo "<td>{$user['password']}</td>";
                     echo "<td>{$user['room']}</td>";
                     echo "<td>{$user['image_url']}</td>";
+                    echo "<td><a href='/lab-4/edit_user.php?id={$user['id']}' class='btn btn-warning'>Edit</a></td>";
+                    echo "<td><a href='/lab-4/del_user.php?id={$user['id']}' class='btn btn-danger'>Delete</a></td>";
                     echo "</tr>";
                 }
                 ?>
