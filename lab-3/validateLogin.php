@@ -8,11 +8,10 @@
 function checkUsersExists($email, $password)
 {
     $users = file('users.txt');
-    print_r($users);
     foreach ($users as $user) {
         print_r($user);
         $user = json_decode($user);
-        if ($user['email'] === $_POST['email'] && $user['password'] === $_POST['password']) {
+        if ($user->email === $_POST['email'] && $user->password === $_POST['password']) {
             return true;
         }
     }
@@ -21,7 +20,9 @@ function checkUsersExists($email, $password)
 }
 
 if (checkUsersExists($_POST['email'], $_POST['password'])) {
-    header('Location: /lab-3/home.php');
+    session_start();
+    $_SESSION["email"] = $_POST["email"];
+    header('Location: /lab-3/home.php?');
     die();
 }
 

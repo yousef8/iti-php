@@ -2,24 +2,21 @@
 <html lang="en">
 
 <?php
- ini_set('display_errors', 1);
-  ini_set('display_startup_errors', 1);
-  error_reporting(E_ALL);
-?>
-<?php
-function getOldValueIfExist($fieldName){
-  if(!$_GET){
-    return "";
-  }  
-  return"value=\"{$_GET['old'][$fieldName]}\"";
+function getOldValueIfExist($fieldName)
+{
+    if (!$_GET) {
+        return "";
+    }
+    return "value=\"{$_GET['old'][$fieldName]}\"";
 }
 
-function getErrorMessageIfExists($fieldName){
-  if ($_GET && array_key_exists($fieldName, $_GET['errors'])) {
-    return "<div class='alert alert-danger' role='alert'>
+function getErrorMessageIfExists($fieldName)
+{
+    if ($_GET && array_key_exists($fieldName, $_GET['errors'])) {
+        return "<div class='alert alert-danger' role='alert'>
               {$_GET['errors'][$fieldName]}
             </div>";
-  }
+    }
 }
 ?>
 
@@ -36,25 +33,25 @@ function getErrorMessageIfExists($fieldName){
         <h1>Add User</h1>
         <form method="post" action="/lab-3/validate.php" enctype="multipart/form-data">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="name" placeholder="Name" name="name" <?php echo getOldValueIfExist("name") ?> >
+                <input type="text" class="form-control" id="name" placeholder="Name" name="name" <?php echo getOldValueIfExist("name") ?>>
                 <label for="name">Name</label>
                 <?php echo getErrorMessageIfExists('name') ?>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"<?php echo getOldValueIfExist("email") ?>>
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" <?php echo getOldValueIfExist("email") ?>>
                 <label for="email">Email address</label>
                 <?php echo getErrorMessageIfExists('email') ?>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="password" name="password" placeholder="password"<?php echo getOldValueIfExist("password") ?>>
+                <input type="password" class="form-control" id="password" name="password" placeholder="password" <?php echo getOldValueIfExist("password") ?>>
                 <label for="password">Password</label>
                 <?php echo getErrorMessageIfExists('password') ?>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="password"<?php echo getOldValueIfExist("confirmPassword") ?>>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="password" <?php echo getOldValueIfExist("confirmPassword") ?>>
                 <label for="confirmPassword">Confirm Password</label>
                 <?php echo getErrorMessageIfExists('confirmPassword') ?>
             </div>
@@ -67,7 +64,7 @@ function getErrorMessageIfExists($fieldName){
                 </select>
                 <label for="floatingSelect">Choose a room</label>
             </div>
-                <?php echo getErrorMessageIfExists('room') ?>
+            <?php echo getErrorMessageIfExists('room') ?>
 
             <div class="mb-3">
                 <label for="formFile" class="form-label">Profile Picture</label>
