@@ -20,7 +20,7 @@
         exit('Failed retrieve user info' . PHP_EOL);
     }
 
-    $edit_user_stmt = $conn->prepare("UPDATE users SET name = :name, email = :email, password = :password, room = :room, image_url = :image_url");
+    $edit_user_stmt = $conn->prepare("UPDATE users SET name = :name, email = :email, password = :password, room = :room, image_url = :image_url WHERE id = {$user->id}");
     ?>
 
  <?php
@@ -79,7 +79,6 @@ if ($_POST['password'] != $_POST['confirmPassword']) {
 
 if ($_FILES['image']) {
     $ext = strtolower(end(explode('.', $_FILES['image']['name'])));
-
     if (!in_array($ext, ALLOWED_EXT)) {
         $errors['image'] = "This is not an image";
     }
@@ -117,7 +116,7 @@ $edit_user_stmt->bindValue(
 );
 $edit_user_stmt->bindValue(
     ':image_url',
-    $_POST['image_url'] ? $_POST['image_url'] : $user->image_url
+    $_FILES['image'] ? $imageURL : $user->image_url
 );
 
 if ($edit_user_stmt->execute()) {
